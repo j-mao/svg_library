@@ -44,9 +44,9 @@ class Group
 			filter = Filter;
 		}
 
-		void addDasharray()
+		void addAttribute(string attr_type, string attr_val)
 		{
-			img.back().setAttr("stroke-dasharray", "5,5");
+			img.back().setAttr(attr_type, attr_val);
 		}
 
 		friend ostream& operator<< (ostream& out, const Group &g)

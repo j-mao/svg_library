@@ -161,6 +161,18 @@ class SVG
 			img.back().addElement(me);
 		}
 
+		void line(int x_1, int y_1, int x_2, int y_2, int stroke_width, Color stroke)
+		{
+			Element me("line");
+			me.setAttr("x1", x_1);
+			me.setAttr("y1", y_1);
+			me.setAttr("x2", x_2);
+			me.setAttr("y2", y_2);
+			me.setAttr("stroke-width", stroke_width);
+			me.setAttr("stroke", stroke);
+			img.back().addElement(me);
+		}
+
 		void polygon(vector<int> x, vector<int> y, Color fill)
 		{
 			assert(x.size() == y.size());
@@ -301,9 +313,14 @@ class SVG
 			img.back().addElement(me);
 		}
 
+		void addAttribute(string attr_type, string attr_val)
+		{
+			img.back().addAttribute(attr_type, attr_val);
+		}
+
 		void addDasharray()
 		{
-			img.back().addDasharray();
+			addAttribute("stroke-dasharray", "5,5");
 		}
 
 		void print(const char *file, const char *title) const

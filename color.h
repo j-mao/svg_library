@@ -33,18 +33,23 @@ class Color
 
 		Color()
 		{
-			*this = Color::WHITE;
+			*this = Color::NONE;
 		}
 
 		operator string() const
 		{
-			if (r == -1 && g == -1 && b == -1)
+			if (*this == Color::NONE)
 			{
 				return "none";
 			}
 			char buf[8];
 			sprintf(buf, "#%02X%02X%02X", r, g, b);
 			return string(buf);
+		}
+
+		bool operator== (const Color oth) const
+		{
+			return r == oth.r && g == oth.g && b == oth.b;
 		}
 
 		static const Color NONE;
