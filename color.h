@@ -20,36 +20,35 @@ class Color
 {
 	private:
 
-		int r, g, b;
+		string display;
 
 	public:
 
-		Color(int R, int G, int B)
+		Color(int r, int g, int b)
 		{
-			r = R;
-			g = G;
-			b = B;
+			char buf[8];
+			sprintf(buf, "#%02X%02X%02X", r, g, b);
+			display = string(buf);
 		}
 
 		Color()
 		{
-			*this = Color::NONE;
+			display = "none";
+		}
+
+		Color(string gradient)
+		{
+			display = "url(#"+gradient+")";
 		}
 
 		operator string() const
 		{
-			if (*this == Color::NONE)
-			{
-				return "none";
-			}
-			char buf[8];
-			sprintf(buf, "#%02X%02X%02X", r, g, b);
-			return string(buf);
+			return display;
 		}
 
 		bool operator== (const Color oth) const
 		{
-			return r == oth.r && g == oth.g && b == oth.b;
+			return display == oth.display;
 		}
 
 		static const Color NONE;
@@ -203,7 +202,7 @@ class Color
 		static const Color YELLOWGREEN;
 };
 
-const Color Color::NONE = Color(-1, -1, -1);
+const Color Color::NONE = Color();
 
 const Color Color::ALICEBLUE = Color(240, 248, 255);
 const Color Color::ANTIQUEWHITE = Color(250, 235, 215);

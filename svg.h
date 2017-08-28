@@ -328,6 +328,7 @@ class SVG
 			ofstream out(file);
 			out << "<!DOCTYPE html>\n<html>\n<head>\n<title>" << title << "</title>\n</head>\n<body>\n";
 			out << "<svg width=\"" << w << "\" height=\"" << h << "\">\n";
+			out << "<defs>\n\n\n</defs>\n\n";
 			for (unsigned i = 0;i < img.size();i++)
 			{
 				out << img[i];
